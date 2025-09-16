@@ -146,9 +146,37 @@ int pintos_init(void)
 
       while (i <255){
         x[i] = input_getc();
-        if (x[i] == 13)
-        {
-          printf("\n");
+         if (x[i] == 13 || x[i] == '\n') {  // Enter key
+                x[i] = '\0';  // terminate string
+                printf("\n");
+
+                if (strcmp(x, "whoami") == 0) {
+                    printf("230317J Sangeeth\n");
+                } else if (strcmp(x, "exit") == 0) {
+                    printf("Goodbye!\n");
+                    return 0; // exit program
+              } else if (strcmp(x,"shutdown")==0){
+
+                  shutdown_power_off();
+             
+              } else if (strcmp(x,"time")==0){
+                time_t time_now =  rtc_get_time();
+                printf("Unix timestamp: %ld\n", (long)time_now);
+                
+              }
+                
+                
+                else if (i > 0) {
+                    printf("Unknown command: %s\n", x);
+                }
+
+
+
+          
+
+
+    
+
          
           break;
         }
