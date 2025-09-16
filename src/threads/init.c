@@ -163,8 +163,15 @@ int pintos_init(void)
                 time_t time_now =  rtc_get_time();
                 printf("Unix timestamp: %ld\n", (long)time_now);
                 
+              } else if (strcmp(x,"ram")==0){
+                  printf("%'" PRIu32 " kB RAM...\n", init_ram_pages * PGSIZE / 1024);
               }
-                
+                else if (strcmp(x,"thread")==0){
+                  thread_print_stats();
+                }
+                else if (strcmp(x,"priority")==0){
+                  printf("%i \n" ,thread_get_priority());
+                }
                 
                 else if (i > 0) {
                     printf("Unknown command: %s\n", x);
